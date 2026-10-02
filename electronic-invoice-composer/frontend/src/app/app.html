@@ -1,0 +1,38 @@
+<!-- Navigation Bar -->
+<nav class="navbar glass" [class.menu-open]="menuOpen">
+  <div class="nav-container">
+    <a routerLink="/" class="nav-brand" (click)="closeMenu()">
+      <span class="brand-icon">⚡</span>
+      <span class="brand-text">Invoice Composer</span>
+    </a>
+
+    <button class="menu-toggle" (click)="toggleMenu()" [attr.aria-label]="'Menú'">
+      <span class="hamburger" [class.active]="menuOpen"></span>
+    </button>
+
+    <ul class="nav-links" [class.open]="menuOpen">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Inicio</a></li>
+      <li><a routerLink="/builder" routerLinkActive="active" (click)="closeMenu()">Crear Factura</a></li>
+      <li><a routerLink="/pattern" routerLinkActive="active" (click)="closeMenu()">Patrón Decorator</a></li>
+      <li><a routerLink="/architecture" routerLinkActive="active" (click)="closeMenu()">Arquitectura</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+  <router-outlet />
+</main>
+
+<!-- Footer -->
+<footer class="app-footer">
+  <div class="footer-container">
+    <p class="footer-disclaimer">
+      ⚠️ Esta aplicación es una simulación académica de un sistema de facturación electrónica.
+      No es una integración certificada con la DIAN y no genera facturas electrónicas, firmas digitales ni documentos tributarios legalmente válidos.
+    </p>
+    <p class="footer-credits">
+      Patrón Decorator — Patrones de Software — 2026
+    </p>
+  </div>
+</footer>
