@@ -13,3 +13,5 @@ Con copia de correo al cliente
 
 Por qué es complejo: Combina reglas tributarias, validaciones y múltiples capas de comportamiento que cambian según el tipo de cliente y régimen.
 Frontend: Formulario de facturación donde se activan/desactivan las capas y se genera el XML/PDF en tiempo real.
+
+Nombres: William Chavez Bravo, Christian Santiago Parra (Lider), Oscar Felipe Hernandez 
