@@ -1,5 +1,5 @@
 # PatronDecorator-
-1. Sistema de Facturación Electrónica DIAN (Colombia)
+### Sistema de Facturación Electrónica DIAN (Colombia)
 
 Objeto base: Factura básica
 Decoradores complejos:
@@ -14,9 +14,10 @@ Con copia de correo al cliente
 Por qué es complejo: Combina reglas tributarias, validaciones y múltiples capas de comportamiento que cambian según el tipo de cliente y régimen.
 Frontend: Formulario de facturación donde se activan/desactivan las capas y se genera el XML/PDF en tiempo real.
 
-Nombres: William Chavez Bravo, Christian Santiago Parra (Lider), Oscar Felipe Hernandez
+### Nombres: William Chavez Bravo, Christian Santiago Parra (Lider), Oscar Felipe Hernandez
 
 ## Módulos Funcionales, de diseño y normativos.
+
 ### 1. Marco Legal y Normativo de Referencia (Colombia)
 El sistema debe cumplir de forma rigurosa con:
 - **Estatuto Tributario (E.T.):** Artículo 616-1 (Obligación de facturar, validación previa y requisitos de la factura y documentos electrónicos).
