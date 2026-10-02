@@ -42,4 +42,9 @@ public class Seller {
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
+
+    /** Prototype support: independent copy of this seller. */
+    public Seller copy() {
+        return new Seller(name, nit, address, city, phone);
+    }
 }

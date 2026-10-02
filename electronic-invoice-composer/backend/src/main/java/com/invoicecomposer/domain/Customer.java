@@ -50,4 +50,9 @@ public class Customer {
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
+
+    /** Prototype support: independent copy of this customer. */
+    public Customer copy() {
+        return new Customer(name, nit, email, address, city, phone);
+    }
 }

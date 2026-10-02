@@ -47,4 +47,9 @@ public class DecoratorConfigDto {
         Object value = parameters.get(key);
         return value != null ? value.toString() : defaultValue;
     }
+
+    /** Prototype support: independent copy of this decorator configuration. */
+    public DecoratorConfigDto copy() {
+        return new DecoratorConfigDto(type, new HashMap<>(parameters));
+    }
 }

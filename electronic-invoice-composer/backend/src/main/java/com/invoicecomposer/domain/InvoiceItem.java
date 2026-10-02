@@ -42,4 +42,9 @@ public class InvoiceItem {
 
     public double getUnitPrice() { return unitPrice; }
     public void setUnitPrice(double unitPrice) { this.unitPrice = unitPrice; }
+
+    /** Prototype support: independent copy of this line item. */
+    public InvoiceItem copy() {
+        return new InvoiceItem(description, quantity, unitPrice);
+    }
 }

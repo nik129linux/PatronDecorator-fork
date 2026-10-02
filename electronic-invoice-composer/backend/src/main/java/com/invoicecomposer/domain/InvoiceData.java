@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Aggregates all data needed to create a basic electronic invoice.
@@ -57,4 +58,18 @@ public class InvoiceData {
 
     public List<InvoiceItem> getItems() { return items; }
     public void setItems(List<InvoiceItem> items) { this.items = items; }
+
+    /**
+     * Prototype support: deep copy. The seller, customer and every item are copied too,
+     * so changing the clone never touches the original.
+     */
+    public InvoiceData copy() {
+        List<InvoiceItem> itemsCopy = items == null
+                ? null
+                : items.stream().map(InvoiceItem::copy).collect(Collectors.toList());
+        return new InvoiceData(invoiceNumber, issueDate,
+                customer == null ? null : customer.copy(),
+                seller == null ? null : seller.copy(),
+                itemsCopy);
+    }
 }

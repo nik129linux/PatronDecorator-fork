@@ -69,3 +69,48 @@ El sistema debe estructurar clases, entidades y servicios que reflejen las sigui
 - **Comentarios:** Explicaciones técnicas y de negocio redactadas en **español** dentro del código.
 - **Documentación:** Incluir un archivo `documentation.md` detallado en **español**, explicando el mapeo de las normas tributarias implementadas, el flujo de validación ante la DIAN y la guía de despliegue del sistema.
 
+
+---
+
+## Creational patterns added (workshop extension)
+
+The project already applies **Decorator** (`decorator/`). This extension adds three creational patterns
+around one new feature, **quick compose**: issue an invoice from a saved template, a tax regime and a few
+overrides, instead of filling the whole form by hand.
+
+```
+POST /api/invoices/quick  {templateId?, regime?, invoiceNumber?, seller?, customer?, items?, persist?}
+        |
+        |-- 1. Prototype ........ clone the template (never touches the stored original)
+        |-- 2. Builder .......... load the clone, apply the overrides, validate everything at once
+        |-- 3. Abstract Factory . if a regime was chosen, replace the chain with that regime's default chain
+        `-- 4. InvoiceService ... preview or persist (existing code, unchanged)
+```
+
+| Pattern | Where (`electronic-invoice-composer/backend/src/main/java/com/invoicecomposer/`) | What it does here | Author |
+|---|---|---|---|
+| **Prototype** | `creational/prototype/` (`Prototype`, `InvoiceTemplate`, `InvoiceTemplateRegistry`) plus `copy()` / `deepCopy()` on `Seller`, `Customer`, `InvoiceItem`, `InvoiceData`, `DecoratorConfigDto`, `ComposeInvoiceRequest` | A registry of master invoice templates that only hands out deep copies. Cloning a template lets you issue recurring invoices without editing the stored model. | Nicolas Casanova |
+| **Builder** | `creational/builder/InvoiceRequestBuilder` | Assembles a `ComposeInvoiceRequest` step by step (number, date, seller, customer, items, decorators) and validates all rules in `build()`, reporting every problem at once. | Samuel Vallejo |
+| **Abstract Factory** | `creational/abstractfactory/` (`TaxRegimeFactory`, one concrete factory per `TaxRegimeType`, and the products `IndirectTaxLayer`, `WithholdingLayer`, `ComplianceLayer`) | One factory per tax regime (ordinary, non-VAT, Simple regime) creates a consistent family: taxes, withholdings and compliance steps. `defaultChain()` is the regime's decorator chain. | Samuel Vallejo |
+| **Feature glue** | `service/QuickComposeService`, `controller/QuickComposeController`, `dto/QuickComposeRequest`, `dto/TemplateSummary`, `dto/RegimeSummary` | Orchestrates the three patterns and exposes the endpoints below. | Nicolas Casanova |
+
+### New endpoints
+
+| Method | Path | Returns |
+|---|---|---|
+| GET | `/api/invoices/templates` | The cloneable templates (id, name, regime, request) |
+| GET | `/api/invoices/regimes` | Each tax regime and its default decorator chain |
+| POST | `/api/invoices/quick` | An `InvoiceResponse`: 200 when previewed, 201 when `persist` is true |
+
+### Frontend
+
+The Angular app gets a "Quick compose" panel (`frontend/src/app/`): pick a template and/or a regime, edit the
+fields, and see the preview. Implemented by Nicolas Casanova after the backend lands.
+
+### Status
+
+- [x] Contract and skeletons for Builder and Abstract Factory
+- [x] Prototype and the quick-compose feature (backend)
+- [ ] Builder implementation
+- [ ] Abstract Factory implementation (3 concrete factories)
+- [ ] Quick-compose panel in Angular
