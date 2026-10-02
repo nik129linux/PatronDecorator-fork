@@ -55,7 +55,9 @@ public class InvoiceRequestBuilder {
         }
 
         decorators.clear();
-        decorators.addAll(copy.getDecorators());
+        if (copy.getDecorators() != null) {
+            decorators.addAll(copy.getDecorators());
+        }
         return this;
     }
 
