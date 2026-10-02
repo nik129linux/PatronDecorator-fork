@@ -1,0 +1,7 @@
+{
+  "framework": null,
+  "installCommand": "npm ci",
+  "buildCommand": "sed -i \"s#__API_URL__#${API_URL:-http://localhost:8080/api}#\" src/environments/environment.prod.ts && npx ng build",
+  "outputDirectory": "dist/frontend/browser",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
