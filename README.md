@@ -1,5 +1,5 @@
-# PatronDecorator-
-### Sistema de Facturación Electrónica DIAN (Colombia)
+# Sistema de Facturación Electrónica DIAN (Colombia)
+## Taller: Patrones Estructurales y Decorativos
 
 El desarrollo de este sistema resuelve uno de los retos más complejos en el software financiero: la adaptabilidad a reglas tributarias heterogéneas y en constante evolución. Utilizando un objeto base () acoplado a Decoradores Complejos, el sistema permite ensamblar de forma dinámica y en tiempo de ejecución comportamientos fiscales avanzados (como IVA, ICA, retenciones en la fuente, descuentos, notas de ajuste, firma digital y validación previa ante la DIAN) sin alterar el núcleo de la lógica de negocio.
 
@@ -14,11 +14,12 @@ Con envío automático a la DIAN
 Con copia de correo al cliente
 
 Por qué es complejo: Combina reglas tributarias, validaciones y múltiples capas de comportamiento que cambian según el tipo de cliente y régimen.
+
 Frontend: Formulario de facturación donde se activan/desactivan las capas y se genera el XML/PDF en tiempo real.
 
 ### Nombres: Equipo de Desarrollo:
 
-Christian Santiago Parra (Líder de Proyecto)
+Cristian Santiago Parra (Líder de Proyecto)
 
 William Chavez Bravo (Desarrollador / Arquitecto)
 
