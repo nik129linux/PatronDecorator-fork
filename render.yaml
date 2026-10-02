@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: invoice-composer-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./electronic-invoice-composer/backend/Dockerfile
+    dockerContext: ./electronic-invoice-composer/backend
+    healthCheckPath: /api/invoices/decorators
+    envVars:
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://patron-invoice-composer.vercel.app,http://localhost:4200
