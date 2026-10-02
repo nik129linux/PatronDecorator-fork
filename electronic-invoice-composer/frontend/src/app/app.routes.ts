@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/builder/builder.component').then(m => m.BuilderComponent)
   },
   {
+    path: 'quick',
+    loadComponent: () => import('./pages/quick/quick.component').then(m => m.QuickComponent)
+  },
+  {
     path: 'pattern',
     loadComponent: () => import('./pages/pattern/pattern.component').then(m => m.PatternComponent)
   },

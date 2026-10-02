@@ -113,4 +113,4 @@ fields, and see the preview. Implemented by Nicolas Casanova after the backend l
 - [x] Prototype and the quick-compose feature (backend)
 - [ ] Builder implementation
 - [ ] Abstract Factory implementation (3 concrete factories)
-- [ ] Quick-compose panel in Angular
+- [x] Quick-compose panel in Angular (`/quick`)

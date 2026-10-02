@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { ComposeInvoiceRequest, InvoiceResponse } from '../models/invoice.model';
+import {
+  ComposeInvoiceRequest, InvoiceResponse, QuickComposeRequest, RegimeSummary, TemplateSummary
+} from '../models/invoice.model';
 
 /**
  * Service for communicating with the Java backend REST API.
@@ -49,5 +51,26 @@ export class InvoiceApiService {
    */
   getAvailableDecorators(): Observable<string[]> {
     return this.http.get<string[]>(`${this.baseUrl}/decorators`);
+  }
+
+  /**
+   * List the invoice templates that can be cloned (Prototype).
+   */
+  getTemplates(): Observable<TemplateSummary[]> {
+    return this.http.get<TemplateSummary[]>(`${this.baseUrl}/templates`);
+  }
+
+  /**
+   * List the tax regimes with their default decorator chain (Abstract Factory).
+   */
+  getRegimes(): Observable<RegimeSummary[]> {
+    return this.http.get<RegimeSummary[]>(`${this.baseUrl}/regimes`);
+  }
+
+  /**
+   * Compose an invoice from a template, a regime and overrides (Prototype + Builder + Abstract Factory).
+   */
+  quickCompose(request: QuickComposeRequest): Observable<InvoiceResponse> {
+    return this.http.post<InvoiceResponse>(`${this.baseUrl}/quick`, request);
   }
 }

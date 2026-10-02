@@ -90,3 +90,31 @@ export interface DecoratorInfo {
   defaultAmount?: number;
   category: 'tax' | 'discount' | 'adjustment' | 'process';
 }
+
+export type TaxRegimeType = 'ORDINARY' | 'NON_VAT' | 'SIMPLE';
+
+/** A cloneable invoice template (Prototype registry entry). */
+export interface TemplateSummary {
+  id: string;
+  name: string;
+  description: string;
+  regime: TaxRegimeType;
+  request: ComposeInvoiceRequest;
+}
+
+/** A tax regime with the decorator chain its Abstract Factory produces. */
+export interface RegimeSummary {
+  type: TaxRegimeType;
+  displayName: string;
+  defaultDecorators: DecoratorConfig[];
+}
+
+/** Request of the quick-compose endpoint. Every field is optional. */
+export interface QuickComposeRequest {
+  templateId?: string;
+  regime?: TaxRegimeType;
+  invoiceNumber?: string;
+  customer?: Customer;
+  items?: InvoiceItem[];
+  persist: boolean;
+}
