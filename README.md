@@ -67,3 +67,5 @@ El sistema debe estructurar clases, entidades y servicios que reflejen las sigui
 - **Código Fuente:** Redactado completamente en **inglés** (nombres de clases, métodos, variables, atributos y endpoints).
 - **Comentarios:** Explicaciones técnicas y de negocio redactadas en **español** dentro del código.
 - **Documentación:** Incluir un archivo `documentation.md` detallado en **español**, explicando el mapeo de las normas tributarias implementadas, el flujo de validación ante la DIAN y la guía de despliegue del sistema.
+
+Nombres: William Chavez Bravo, Christian Santiago Parra (lider), Oscar Felipe Hernandez
